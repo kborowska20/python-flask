@@ -9,7 +9,8 @@ app = Flask(__name__)
 def list():
     """ Shows list of todo items stored in the database.
     """
-    return "Hello World!"
+    list_to_do = Todo.get_all()
+    return render_template("index.html", list_to_do=list_to_do)
 
 
 @app.route("/add", methods=['GET', 'POST'])
@@ -18,6 +19,10 @@ def add():
     If the method was GET it should show new item form.
     If the method was POST it shold create and save new todo item.
     """
+    if request.method == 'GET':
+        pass
+    elif request.method == "POST":
+        pass
     return "Add todo"
 
 
