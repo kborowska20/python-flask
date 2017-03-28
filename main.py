@@ -20,16 +20,24 @@ def add():
     If the method was POST it shold create and save new todo item.
     """
     if request.method == 'GET':
-        pass
+        return render_template("add.html")
+
     elif request.method == "POST":
-        pass
-    return "Add todo"
+        render_template('add.html')
+        todo_name = request.form['name']
+        print(todo_name)
+        new_todo_item = Todo(3,todo_name, "True")
+        Todo.save(new_todo_item)
+        list_to_do = Todo.get_all()
+        return render_template("index.html", list_to_do = list_to_do)
 
 
 @app.route("/remove/<todo_id>")
 def remove(todo_id):
     """ Removes todo item with selected id from the database """
-    return "Remove " + todo_id
+    Todo.remove(todo_id)
+    list_to_do = Todo.get_all()
+    return render_template("index.html",list_to_do=list_to_do)
 
 
 @app.route("/edit/<todo_id>", methods=['GET', 'POST'])
@@ -38,13 +46,16 @@ def edit(todo_id):
     If the method was GET it should show todo item form.
     If the method was POST it shold update todo item in database.
     """
-    return "Edit " + todo_id
+    if request.method == 'GET':
+        render_template("edit.html", todo_id = todo_id)
+    elif request.method == "POST":
+        list_to_do = Todo.get_all()
+        render_template("index.html",list_to_do=list_to_do)
 
-
-@app.route("/toggle/<todo_id>")
-def toggle(todo_id):
-    """ Toggles the state of todo item """
-    return "Toggle " + todo_id
+#@app.route("/toggle/<todo_id>")
+#def toggle(todo_id):
+#    """ Toggles the state of todo item (save + toggle) """
+#    #return "Toggle " + todo_id
 
 if __name__ == "__main__":
     app.run()

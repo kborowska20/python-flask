@@ -1,4 +1,6 @@
+from data.database import DB
 import sqlite3
+
 
 class Todo:
     """ Class representing todo item."""
@@ -10,15 +12,18 @@ class Todo:
 
     def toggle(self):
         """ Toggles item's state """
-        self.done = True
+        self.done = not(self.done)
+
 
     def save(self):
         """ Saves/updates todo item in database """
-        pass
+
 
     def delete(self):
         """ Removes todo item from the database """
-        pass
+        c.execute("DELETE FROM todolist WHERE id = ?", (self.id))
+        con.commit()
+
 
     @classmethod
     def get_all(cls):
@@ -26,10 +31,21 @@ class Todo:
         Returns:
             list(Todo): list of all todos
         """
-        conn = sqlite3.connect('tdl.db')
-        c = conn.cursor()
+        con = sqlite3.connect('data/tdl.db')
+        allToDo = []
+        c = con.cursor()
         c.execute("SELECT * FROM todolist")
-        return [item for item in c]
+        records = c.fetchall()
+
+        for item in records:
+
+            td = Todo(item[0],item[1],item[2])
+            allToDo.append(td)
+
+        con.close()
+
+        return allToDo
+
 
 
 
@@ -41,11 +57,18 @@ class Todo:
         Returns:
             Todo: Todo object with a given id
         """
-        conn = sqlite3.connect('tdl.db')
-        c = conn.cursor()
-        ex = "SELECT * FROM todolist WHERE id = {}".format(id)
-        c.execute(ex)
-        for att in c:
-            TD = Todo(att[0],att[1],att[2])
-        return TD
+        con = sqlite3.connect('data/tdl.db')
+        c = con.cursor()
+        c.execute("SELECT * FROM todolist WHERE id = ?", (id))
+
+        record = c.fetchone()
+
+        id = record[0]
+        name = record[1]
+
+        todo_item = Todo(id,name)
+        con.close()
+
+        return todo_item
+
 
