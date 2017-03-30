@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>To do list application</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+
+    body {
+        background-image: url("../static/bg.jpeg");
+        background-size: cover;
+    }
+    
+    .list-group li {
+    list-style: none;
+        font-size: 17px;
+    }
+    
+.panel-info, .panel-rating {
+    float: left;
+    margin: 5px 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+    .panel-more1 {
+    padding-left: 1px;
+    padding-right: 1px;
+    text-align: right;
+    }
+    img{
+        height: 9%;
+        width: 9%;
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-left: 10px;
+    }
+    h1 {
+        font-family: "Times New Roman", Times, serif;
+        font-weight: bold;
+        color: pink;
+        font-size: 80px ;
+    }
+</style>
+</head>
+
+<body>
+<div class="container" >
+    <h1 class="text-center">TO DO LIST</h1>
+
+    <ul class="list-group">
+      {% for item in todolist %}
+    <form method="GET">
+            <li>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="panel-info">
+                        {% if item.done == 1 %}
+                        {{ item.name }} || Deadline: {{ item.deadline }}
+                    </div>
+                    <div class="panel-more1">
+                        <a href="/toggle/{{item.id}}"><img src="/static/checked.svg"></a>
+                        <a href="/edit/{{item.id}}"><img src="/static/editi.png"></a>
+                        <a href="/remove/{{item.id}}"><img src="/static/delete.png"></a>
+                    </div>
+                        {% else %}
+                            <div class="panel-info">
+                        {{ item.name }} || Deadline: {{ item.deadline }}
+                            </div>
+                        <div class="panel-more1">
+                        <a href="/toggle/{{item.id}}"><img src="/static/unchecked.png"></a>
+                        <a href="/edit/{{item.id}}"><img src="/static/editi.png"></a>
+                        <a href="/remove/{{item.id}}"><img src="/static/delete.png"></a>
+                    </div>
+                    {% endif %}
+                    </div>
+                </div>
+            </li>
+          <a href="/add"></a>
+      {% endfor %}
+    </form>
+    </ul>
+    <nav>
+        <a href="/add" class="btn btn-info btn-block">Add new To Do task.</a>
+    </nav>
+
+</div>
+</body>
+</html>
