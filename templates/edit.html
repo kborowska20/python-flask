@@ -48,10 +48,10 @@
                     <p>Deadline: <input class="datepicker" type="date" name = "deadline" value={{ item.deadline}} /></p>
                     {% if item.done == 1 %}
                     <p>Done:
-                        <a href="/toggle/{{item.id}}"><img src="/static/checked.svg"></a></p>
+                        <a href="/toggle/{{item.id}}" class="glyphicon glyphicon-check"></a></p>
                     {% else %}
                     <p>Done:
-                        <a href="/toggle/{{item.id}}"><img src="/static/unchecked.png"></a></p>
+                        <a href="/toggle/{{item.id}}" class="glyphicon glyphicon-unchecked"></a></p>
                     {% endif %}
                     <p><input class="btn btn-info btn-block" type="submit" value="Edit"></p>
                 </form>

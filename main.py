@@ -69,6 +69,10 @@ def toggle(todo_id):
     item.toggle()
     return redirect(url_for('list'))
 
+@app.route("/jokes")
+def carousel():
+    return render_template("carusel.html")
+
 
 if __name__ == "__main__":
     app.run(debug=True)

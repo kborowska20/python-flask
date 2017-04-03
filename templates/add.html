@@ -34,7 +34,8 @@
     </head>
     <body>
         <div class = 'container'>
-            <h1>Add new Item:/h1>
+            <div class="row">
+            <h1>Add new Item:</h1>
                 <form method="POST" action="/add">
                     <p>Name:<input class="form-control" type = "text" name = "name" required placeholder="to do ..." /></p>
                     <p>Deadline: <input class="datepicker" type="date" name = "deadline" required placeholder="deadline" /></p>
@@ -44,6 +45,7 @@
             <nav>
                 <a class="btn btn-success" href="/">Return to List</a>
             </nav>
+            </div>
         </div>
     </body>
 </html>

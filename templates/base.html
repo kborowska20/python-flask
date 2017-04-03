@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>To do list application</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<style>
+
+    body {
+        background-image: url("../static/bg.jpeg");
+        background-size: cover;
+    }
+
+    .list-group li {
+    list-style: none;
+        font-size: 17px;
+    }
+
+.panel-info, .panel-rating {
+    float: left;
+    margin: 5px 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+    .panel-more1 {
+    padding-left: 1px;
+    text-align: right;
+    }
+    img{
+        height: 9%;
+        width: 9%;
+        padding-left: 30px;
+        padding-right: 30px;
+        margin-left: 10px;
+    }
+    h1 {
+        font-family: "Times New Roman", Times, serif;
+        font-weight: bold;
+        color: pink;
+        font-size: 80px ;
+    }
+</style>
+</head>
+
+<body>
+<div class="container">
+    {% block container %} {% endblock %}
+</div>
+x</body>
+</html>

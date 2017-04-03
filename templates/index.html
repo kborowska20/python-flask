@@ -18,6 +18,9 @@
     list-style: none;
         font-size: 17px;
     }
+    .table {
+        background-color: rgba(255, 255, 255, 0.9);
+        }
     
 .panel-info, .panel-rating {
     float: left;
@@ -27,7 +30,6 @@
 }
     .panel-more1 {
     padding-left: 1px;
-    padding-right: 1px;
     text-align: right;
     }
     img{
@@ -47,45 +49,70 @@
 </head>
 
 <body>
-<div class="container" >
+<div class="container">
+    <div class="row">
+        <div class="col-xs-12">
     <h1 class="text-center">TO DO LIST</h1>
-
-    <ul class="list-group">
-      {% for item in todolist %}
-    <form method="GET">
-            <li>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                    <div class="panel-info">
-                        {% if item.done == 1 %}
-                        {{ item.name }} || Deadline: {{ item.deadline }}
-                    </div>
-                    <div class="panel-more1">
-                        <a href="/toggle/{{item.id}}"><img src="/static/checked.svg"></a>
-                        <a href="/edit/{{item.id}}"><img src="/static/editi.png"></a>
-                        <a href="/remove/{{item.id}}"><img src="/static/delete.png"></a>
-                    </div>
-                        {% else %}
-                            <div class="panel-info">
-                        {{ item.name }} || Deadline: {{ item.deadline }}
-                            </div>
-                        <div class="panel-more1">
-                        <a href="/toggle/{{item.id}}"><img src="/static/unchecked.png"></a>
-                        <a href="/edit/{{item.id}}"><img src="/static/editi.png"></a>
-                        <a href="/remove/{{item.id}}"><img src="/static/delete.png"></a>
-                    </div>
-                    {% endif %}
-                    </div>
-                </div>
-            </li>
+                        </table>
           <a href="/add"></a>
-      {% endfor %}
-    </form>
-    </ul>
     <nav>
-        <a href="/add" class="btn btn-info btn-block">Add new To Do task.</a>
+        <a href="/add" class="btn btn-info btn-block">Add new task</a>
+        <a href="/jokes" class="btn btn-info btn-block">Carousel of jokes</a>
     </nav>
-
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+        <h2>To do:</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr class="info">
+        <th>name of item:</th>
+        <th>Deadline</th>
+        <th>status</th>
+        <th>edit/delete</th>
+      </tr>
+    </thead>
+    <tbody>
+    {% for item in todolist %}
+      {% if item.done == 1 %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.deadline }}</td>
+        <td><a href="/toggle/{{item.id}}"><span class="glyphicon glyphicon-unchecked"></span></a></td>
+        <td><a href="/edit/{{item.id}}"><span class="glyphicon glyphicon-pencil"></span></a><a href="/remove/{{item.id}}"><span class="glyphicon glyphicon-remove"></span></a></td>
+      </tr>
+          {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+        </div>
+        <div class="col-sm-6">
+        <h2>Done:</h2>
+          <table class="table table-bordered">
+    <thead>
+      <tr class="info">
+        <th>name of item:</th>
+        <th>Deadline</th>
+        <th>status</th>
+        <th>edit/delete</th>
+      </tr>
+    </thead>
+    <tbody>
+       {% for item in todolist %}
+      {% if item.done == 0 %}
+      <tr>
+        <td>{{ item.name }}</td>
+        <td>{{ item.deadline }}</td>
+        <td><a href="/toggle/{{item.id}}"><span class="glyphicon glyphicon-check"></span></a></td>
+        <td><a href="/edit/{{item.id}}"><span class="glyphicon glyphicon-pencil"></span></a><a href="/remove/{{item.id}}"><span class="glyphicon glyphicon-remove"></span></a></td>
+      </tr>
+          {% endif %}
+      {% endfor %}
+    </tbody>
+  </table>
+        </div>
+    </div>
+</div>
 </div>
 </body>
 </html>
