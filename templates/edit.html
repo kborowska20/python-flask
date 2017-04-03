@@ -1,63 +1,20 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>To do list application</title>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <style>
+{% extends "base.html" %}
 
-        body {
-            background-image: url("../static/bg.jpeg");
-            background-size: cover;
-        }
-        .list-group li {
-            list-style: none;
-            font-size: 17px;
-        }
-        h1 {
-            font-family: "Times New Roman", Times, serif;
-            font-weight: bold;
-            color: pink;
-            font-size: 80px ;
-        }
-
-        p {
-            font-family: "Times New Roman", Times, serif;
-            font-weight: bold;
-            font-size: 20px;
-        }
-            
-        img {
-        height: 9%;
-        width: 9%;
-        padding-left: 30px;
-        padding-right: 30px;
-        margin-left: 10px;
-        }
-
-        </style>
-    </head>
-    <body>
-        <div class='container'>
-            <h1>Edit item</h1>
-                <form method="POST" action="/edit/{{ item.id }}">
-                    <p>Name:<input class="form-control" type = "text" name = "name" value={{item.name}} /></p>
-                    <p>Deadline: <input class="datepicker" type="date" name = "deadline" value={{ item.deadline}} /></p>
-                    {% if item.done == 1 %}
-                    <p>Done:
-                        <a href="/toggle/{{item.id}}" class="glyphicon glyphicon-check"></a></p>
-                    {% else %}
-                    <p>Done:
-                        <a href="/toggle/{{item.id}}" class="glyphicon glyphicon-unchecked"></a></p>
-                    {% endif %}
-                    <p><input class="btn btn-info btn-block" type="submit" value="Edit"></p>
-                </form>
-            <nav>
-                <a class="btn btn-success" href="/">Return to To Do list. </a>
-            </nav>
-        </div>
-    </body>
-</html>
+{% block container %}
+    <h1>Edit item</h1>
+    <form method="POST" action="/edit/{{ item.id }}">
+        <p>Name:<input class="form-control" type = "text" name = "name" value={{item.name}} /></p>
+        <p>Deadline: <input class="datepicker" type="date" name = "deadline" value={{ item.deadline}} /></p>
+        {% if item.done == 1 %}
+            <p>Done:
+                <a href="/toggle/{{item.id}}" class="glyphicon glyphicon-check"></a></p>
+        {% else %}
+            <p>Done:
+                <a href="/toggle/{{item.id}}" class="glyphicon glyphicon-unchecked"></a></p>
+        {% endif %}
+        <p><input class="btn btn-info btn-block" type="submit" value="Edit"></p>
+    </form>
+    <nav>
+        <a class="btn btn-success" href="/">Return to To Do list. </a>
+    </nav>
+{% endblock %}

@@ -1,51 +1,16 @@
-<!DOCTYPE html>
-<html>
-    <head>
-        <title>Add item</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.0/jquery.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <style>
+{% extends "base.html" %}
 
-        body {
-        background-image: url("../static/bg.jpeg");
-        background-size: cover;
-        }
-
-        .list-group li {
-            list-style: none;
-            font-size: 17px;
-        }
-
-        h1 {
-            font-family: "Times New Roman", Times, serif;
-            font-weight: bold;
-            color: pink;
-            font-size: 80px ;
-        }
-
-        p {
-            font-family: "Times New Roman", Times, serif;
-            font-weight: bold;
-            font-size: 20px;
-        }
-        </style>
-    </head>
-    <body>
-        <div class = 'container'>
-            <div class="row">
-            <h1>Add new Item:</h1>
-                <form method="POST" action="/add">
-                    <p>Name:<input class="form-control" type = "text" name = "name" required placeholder="to do ..." /></p>
-                    <p>Deadline: <input class="datepicker" type="date" name = "deadline" required placeholder="deadline" /></p>
-                    <p>Done:<input type="checkbox" name="done" /></p>
-                    <p><input class="btn btn-info btn-block"  type="submit" value="Add"></p>
-                </form>
-            <nav>
-                <a class="btn btn-success" href="/">Return to List</a>
-            </nav>
-            </div>
-        </div>
-    </body>
-</html>
+{% block container %}
+    <div class="row">
+        <h1>Add new Item:</h1>
+        <form method="POST" action="/add">
+            <p>Name:<input class="form-control" type = "text" name = "name" required placeholder="to do ..." /></p>
+            <p>Deadline: <input class="datepicker" type="date" name = "deadline" required placeholder="deadline" /></p>
+            <p>Done:<input type="checkbox" name="done" /></p>
+            <p><input class="btn btn-info btn-block"  type="submit" value="Add"></p>
+        </form>
+        <nav>
+            <a class="btn btn-success" href="/">Return to List</a>
+        </nav>
+    </div>
+{% endblock %}
